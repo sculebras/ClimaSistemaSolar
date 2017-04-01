@@ -5,16 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SF.Core", "SF.Core\SF.Core.csproj", "{8F493511-546B-4629-B515-6B613C53D4BE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{AD1A7ADF-A409-4C5B-A614-51C6143ED918}"
-	ProjectSection(SolutionItems) = preProject
-		Database\MultiTenancyManager.bak = Database\MultiTenancyManager.bak
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dlls", "Dlls", "{32816633-9548-4A10-89E5-59569462E02C}"
-	ProjectSection(SolutionItems) = preProject
-		Dlls\log4net.dll = Dlls\log4net.dll
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimaSistemaSolar.Servicio", "ClimaSistemaSolar.Servicio\ClimaSistemaSolar.Servicio.csproj", "{717651DF-BABF-4F99-90F7-CA37F46A5C5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimaSistemaSolar.Component.Initializer", "ClimaSistemaSolar.Component.Initializer\ClimaSistemaSolar.Component.Initializer.csproj", "{DCFA4214-E673-4736-BE56-39202B6ECB0D}"

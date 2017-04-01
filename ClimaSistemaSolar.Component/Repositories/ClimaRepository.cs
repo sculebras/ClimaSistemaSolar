@@ -47,5 +47,6 @@ namespace ClimaSistemaSolar.Component.Repositories
                 return oClima;
             }
         }
+
     }
 }

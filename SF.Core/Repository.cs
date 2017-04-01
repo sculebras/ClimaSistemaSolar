@@ -1,4 +1,5 @@
 ﻿using SF.Core.Interfaces;
+using SF.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -82,6 +83,14 @@ namespace SF.Core
         public virtual void Delete(EntityBase entity)
         {
             entitySet.Remove(entity as TEntity);
+        }
+
+        /// <summary>
+        /// Delete the Entity from entity set.
+        /// </summary>
+        public virtual void DeleteAll()
+        {
+            this.context.Database.ExecuteSqlCommand(string.Format("DELETE FROM {0}",  context.GetTableName<TEntity>()));
         }
 
         /// <summary>

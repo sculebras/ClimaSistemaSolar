@@ -74,7 +74,7 @@ namespace ClimaSistemaSolar.TestConsole
             //oSistemaSolarTests.SimulacionClimaTestAlternativo();
 
             UOWClimaSistemaSolarTests oUOWClimaSistemaSolarTests = new UOWClimaSistemaSolarTests(true);
-            oUOWClimaSistemaSolarTests.EscrituraLecturaTablaClimaTest();
+            //oUOWClimaSistemaSolarTests.EscrituraLecturaTablaClimaTest();
             ////oUOWClimaSistemaSolarTests.EscrituraLecturaTablaTipoClimaTest();
 
             //TestSalidaTraceEstadoPlanetas(0, TipoClima.enumTipoClima.Lluvia);

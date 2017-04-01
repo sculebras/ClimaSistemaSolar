@@ -59,6 +59,13 @@ namespace ClimaSistemaSolar.Component
             int iDiaPerimetroMaximo = 0;
             using (UOWClimaSistemaSolar unitOfWork = new UOWClimaSistemaSolar())
             {
+                if (TablaClimaVacia(unitOfWork))
+                {
+                    string strMsg = "Datos existentes. La simulación no se ejecutará. Primero se deben borrar los datos. Ejecute api/clima/DeleteAll.";
+                    Logger.Trace(TraceEventType.Warning, strMsg);
+                    return strMsg;
+                }
+                
                 //Flag que controla inicio de epocas de lluvia para que el contador cuente las temporadas (conjunto de varios dias juntos) y no que cuente los dias de lluvia.
                 bool blInicioEpocaLluvia = false;
                 //Variables que almacenan el maximo perimetro del triangulo formado por los planetas y el dia que sucede
@@ -78,6 +85,16 @@ namespace ClimaSistemaSolar.Component
 
             Logger.TraceStop(strMetodo);
             return ReportePeriodos(dicContPeriodos , iDiaPerimetroMaximo);
+        }
+
+        /// <summary>
+        /// Verifica si exiten datos en la tabla Clima.
+        /// </summary>
+        /// <param name="unitOfWork"></param>
+        /// <returns></returns>
+        private bool TablaClimaVacia(UOWClimaSistemaSolar unitOfWork)
+        {
+            return unitOfWork.ClimaRepository.RetrieveQueryable().Count() > 0;
         }
 
         private void ProcesarDia(Dictionary<TipoClima.enumTipoClima, int> dicContPeriodos, ref int iDiaPerimetroMaximo, UOWClimaSistemaSolar unitOfWork, ref bool blInicioEpocaLluvia, ref double dblPerimetroMaximo, int anio, int dia)
