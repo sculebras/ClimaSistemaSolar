@@ -23,8 +23,8 @@ namespace ClimaSistemaSolar.TestConsole
             {
                 Logger.Trace(TraceEventType.Start, "Application start");
 
-                SimulacionClimaTest();
-                //TestsUnitariosConsola();
+                //SimulacionClimaTest();
+                TestsUnitariosConsola();
                 Logger.Trace(TraceEventType.Stop, "Application End");
             }
             catch (Exception ex)
@@ -71,10 +71,10 @@ namespace ClimaSistemaSolar.TestConsole
 
             SistemaSolarTests oSistemaSolarTests = new SistemaSolarTests(true);
             //oSistemaSolarTests.SimulacionClimaTest();
-            oSistemaSolarTests.SimulacionClimaTestAlternativo();
+            //oSistemaSolarTests.SimulacionClimaTestAlternativo();
 
             UOWClimaSistemaSolarTests oUOWClimaSistemaSolarTests = new UOWClimaSistemaSolarTests(true);
-            //oUOWClimaSistemaSolarTests.EscrituraLecturaTablaClimaTest();
+            oUOWClimaSistemaSolarTests.EscrituraLecturaTablaClimaTest();
             ////oUOWClimaSistemaSolarTests.EscrituraLecturaTablaTipoClimaTest();
 
             //TestSalidaTraceEstadoPlanetas(0, TipoClima.enumTipoClima.Lluvia);

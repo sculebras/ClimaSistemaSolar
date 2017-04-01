@@ -15,7 +15,7 @@ namespace ClimaSistemaSolar.Component.Initializer
     /// <summary>
     /// Entity Framework Database Initializer.
     /// </summary>
-    public class ModelInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<ModelContext> //DropCreateDatabaseAlways<ModelContext> //DropCreateDatabaseIfModelChanges<ModelContext>
+    public class ModelInitializer : System.Data.Entity.DropCreateDatabaseAlways<ModelContext> //DropCreateDatabaseAlways<ModelContext> //DropCreateDatabaseIfModelChanges<ModelContext>
     {
         //NOT BEING EXECUTED (BUG?)
         protected override void Seed(ModelContext context)
@@ -50,24 +50,20 @@ namespace ClimaSistemaSolar.Component.Initializer
 
             if (context.Database.Exists() && !context.Database.CompatibleWithModel(false))
                 context.Database.Delete();
-            //Adds Unique constraint to Configuration Table
+            
             if (!context.Database.Exists())
             {
                 context.Database.Create();
-                //context.Database.ExecuteSqlCommand("alter table Configuration add constraint IX_UniqueName unique (Name)");
-                //context.Database.ExecuteSqlCommand("alter table [Connection] add constraint IX_UniqueIdentifier unique ([Identifier])");
-               
-//                //Insert SQL Scripts:
-//                context.Database.ExecuteSqlCommand(@"
-//                USE MultiTenancyManager
-//                --[Configuration]
-//                INSERT INTO [MultiTenancyManager].[dbo].[Configuration]([Name],[Value],[Description])VALUES('TokenDecryptingKey','Citroen9','Key Used to decrypt URL tokens. (Alphanumeric).') 
-//                INSERT INTO [MultiTenancyManager].[dbo].[Configuration]([Name],[Value],[Description])VALUES('UseTokenExpiration','1','Defines if Token Expiration is used or not. -0: Not Uses Token Expiration. -1: Uses Token Expiration.') 
-//                INSERT INTO [MultiTenancyManager].[dbo].[Configuration]([Name],[Value],[Description])VALUES('TokenExpiringMinutes','30','Expiration time in minutes to admit token if UseTokenExpiration is active. (Integer).') 
-//                --[Connection]
-//                INSERT INTO [MultiTenancyManager].[dbo].[Connection]([Description],[Identifier],[Server],[DataBase],[User],[Password],[IntegratedSecurity]) VALUES('Local 1','009660H','localhost','SidAuto_Testing','sa','Sofrecom14',0)
-//                INSERT INTO [MultiTenancyManager].[dbo].[Connection]([Description],[Identifier],[Server],[DataBase],[User],[Password],[IntegratedSecurity]) VALUES('Local 2','123456A','localhost','SidAuto_Testing2','sa','Sofrecom14',0)
-//                ");
+                
+                //Insert SQL Scripts:
+                context.Database.ExecuteSqlCommand(@"
+                USE ClimaSistemaSolar
+                --[TipoClima]
+                INSERT INTO [ClimaSistemaSolar].[dbo].[TipoClima]([Descripcion])VALUES('Sequía') 
+                INSERT INTO [ClimaSistemaSolar].[dbo].[TipoClima]([Descripcion])VALUES('Lluvia') 
+                INSERT INTO [ClimaSistemaSolar].[dbo].[TipoClima]([Descripcion])VALUES('Lluvia Pico Máximo') 
+                INSERT INTO [ClimaSistemaSolar].[dbo].[TipoClima]([Descripcion])VALUES('Óptimo') 
+                ");
 
             }
 
