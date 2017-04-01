@@ -1,0 +1,47 @@
+﻿using SF.Core.ErrorHandler;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+
+namespace MultitenancyAdministrator
+{
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // visit http://go.microsoft.com/?LinkId=9394801
+
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AuthConfig.RegisterAuth();
+            
+            //2014-11-19 06:06:02 sculebras:
+            Logger.Log("Multitenancy Administrator - Web Application Started.", Logger.MessageType.Info);
+        }
+
+        //2014-11-20 12:39:16 sculebras:
+        //General Error Handler is managed by App_Start\FilterConfig.cs
+        //If it doesn´t catch the error the Application_Error will catch and log the error (without showing default error page).
+        //If web.config <customErrors mode="Off" /> this will log error instead Handler defined in FilterConfig.cs
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            
+            System.Exception exception = Server.GetLastError();
+            if (exception != null)
+            {
+                Logger.Log(exception);
+            }
+        }
+    
+    }
+}

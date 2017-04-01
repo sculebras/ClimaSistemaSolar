@@ -1,0 +1,64 @@
+﻿using MultiTenancyAdministrator.Component.Model.CustomAnnotations;
+using SF.Core;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace MultiTenancyAdministrator.Component.Model
+{
+    [DataContract]
+    public class Connection : EntityBase
+    {
+        [DataMember]
+        [Column("IdConnection")]
+        public override int Id { get; set; }
+
+        [DataMember]
+        [Required, MaxLength(100)]
+        public string Description { get; set; }
+
+        [DataMember]
+        [Required, StringLength(7, MinimumLength = 7)]
+        public string Identifier { get; set; }
+        
+        [Required, MaxLength(200)]
+        public string Server { get; set; }
+        
+        [Required, MaxLength(200)]
+        public string DataBase { get; set; }
+        
+        [MaxLength(100)]
+        public string User { get; set; }
+        
+        [MaxLength(100)]
+        public string Password { get; set; }
+        
+        [Required]
+        [Display(Name = "Integrated Security")]
+        [IntegratedSecurityCustomValidation("User", "Password")]
+        public bool IntegratedSecurity { get; set; }
+        
+        [NotMapped]
+        public string ConnectionString {
+            get {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat("Data Source={0};database={1};", this.Server, this.DataBase);
+                if (this.IntegratedSecurity)
+                {
+                    sb.Append("Integrated Security=true");
+                }
+                else
+                {
+                    sb.AppendFormat("uid={0};pwd={1}", this.User, this.Password);
+                }
+                return sb.ToString();
+            }
+        }
+    }
+}

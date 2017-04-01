@@ -1,0 +1,85 @@
+﻿using MultiTenancyAdministrator.Component.DAL;
+using MultiTenancyAdministrator.Component.DAL.Context;
+using MultiTenancyAdministrator.Component.Model;
+using SF.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Entity;
+
+namespace MultiTenancyAdministrator.Component.Initializer
+{
+    /// <summary>
+    /// Entity Framework Database Initializer.
+    /// </summary>
+    public class ModelInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<ModelContext> //DropCreateDatabaseAlways<ModelContext> //DropCreateDatabaseIfModelChanges<ModelContext>
+    {
+        //NOT BEING EXECUTED (BUG?)
+        protected override void Seed(ModelContext context)
+        {
+            base.Seed(context);
+            //Initialized Connection Table with Fixed Data
+            context.Connections.Add(new Connection() { Description = "Local 1", Identifier = "Local1", Server = "localhost", DataBase = "SidAuto_Testing", User = "sa", Password = "Sofrecom14" });
+            context.Connections.Add(new Connection() { Description = "Local 2", Identifier = "Local2", Server = "localhost", DataBase = "SidAuto_Testing2", User = "sa", Password = "Sofrecom14" });
+
+
+            //Initializes Configuration Table with Fixed Data
+            //context.Configurations.Add(new Configuration() { Name = Enum.GetName(typeof(Configuration.Items), Configuration.Items.TokenDecryptingKey), Value = "Citroen9", Description = "Key Used to decrypt URL tokens. (Alphanumeric) " });
+            //context.Configurations.Add(new Configuration() { Name = Enum.GetName(typeof(Configuration.Items), Configuration.Items.UseTokenExpiration), Value = "1", Description = "Defines if Token Expiration is used or not. -0: Not Uses Token Expiration. -1: Uses Token Expiration." });
+            //context.Configurations.Add(new Configuration() { Name = Enum.GetName(typeof(Configuration.Items), Configuration.Items.TokenExpiringMinutes), Value = "30", Description = "Expiration time in minutes to admit token if UseTokenExpiration is active. (Integer)" });
+
+
+            context.SaveChanges();
+
+        }
+        //public override void Seed(ModelContext context)
+        //{
+        //    //base.Seed(context);
+
+        //    //Initialized Connection Table with Fixed Data
+        //    context.Connections.Add(new Connection() { Description = "Local 1", Identifier = "Local1", Server = "localhost", DataBase = "SidAuto_Testing", User = "sa", Password = "Sofrecom14" });
+        //    context.Connections.Add(new Connection() { Description = "Local 2", Identifier = "Local2", Server = "localhost", DataBase = "SidAuto_Testing2", User = "sa", Password = "Sofrecom14" });
+            
+
+        //    //Initializes Configuration Table with Fixed Data
+        //    //context.Configurations.Add(new Configuration() { Name = Enum.GetName(typeof(Configuration.Items), Configuration.Items.TokenDecryptingKey), Value = "Citroen9", Description = "Key Used to decrypt URL tokens. (Alphanumeric) " });
+        //    //context.Configurations.Add(new Configuration() { Name = Enum.GetName(typeof(Configuration.Items), Configuration.Items.UseTokenExpiration), Value = "1", Description = "Defines if Token Expiration is used or not. -0: Not Uses Token Expiration. -1: Uses Token Expiration." });
+        //    //context.Configurations.Add(new Configuration() { Name = Enum.GetName(typeof(Configuration.Items), Configuration.Items.TokenExpiringMinutes), Value = "30", Description = "Expiration time in minutes to admit token if UseTokenExpiration is active. (Integer)" });
+           
+           
+        //    context.SaveChanges();
+
+        //}
+        public override void InitializeDatabase(ModelContext context)
+        {
+            //base.InitializeDatabase(context);
+
+            if (context.Database.Exists() && !context.Database.CompatibleWithModel(false))
+                context.Database.Delete();
+            //Adds Unique constraint to Configuration Table
+            if (!context.Database.Exists())
+            {
+                context.Database.Create();
+                context.Database.ExecuteSqlCommand("alter table Configuration add constraint IX_UniqueName unique (Name)");
+                context.Database.ExecuteSqlCommand("alter table [Connection] add constraint IX_UniqueIdentifier unique ([Identifier])");
+               
+                //Insert SQL Scripts:
+                context.Database.ExecuteSqlCommand(@"
+                USE MultiTenancyManager
+                --[Configuration]
+                INSERT INTO [MultiTenancyManager].[dbo].[Configuration]([Name],[Value],[Description])VALUES('TokenDecryptingKey','Citroen9','Key Used to decrypt URL tokens. (Alphanumeric).') 
+                INSERT INTO [MultiTenancyManager].[dbo].[Configuration]([Name],[Value],[Description])VALUES('UseTokenExpiration','1','Defines if Token Expiration is used or not. -0: Not Uses Token Expiration. -1: Uses Token Expiration.') 
+                INSERT INTO [MultiTenancyManager].[dbo].[Configuration]([Name],[Value],[Description])VALUES('TokenExpiringMinutes','30','Expiration time in minutes to admit token if UseTokenExpiration is active. (Integer).') 
+                --[Connection]
+                INSERT INTO [MultiTenancyManager].[dbo].[Connection]([Description],[Identifier],[Server],[DataBase],[User],[Password],[IntegratedSecurity]) VALUES('Local 1','009660H','localhost','SidAuto_Testing','sa','Sofrecom14',0)
+                INSERT INTO [MultiTenancyManager].[dbo].[Connection]([Description],[Identifier],[Server],[DataBase],[User],[Password],[IntegratedSecurity]) VALUES('Local 2','123456A','localhost','SidAuto_Testing2','sa','Sofrecom14',0)
+                ");
+
+            }
+
+            //Database.SetInitializer(new ModelInitializer());
+        }
+    }//End class
+}//End Namespace

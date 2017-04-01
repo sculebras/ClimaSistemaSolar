@@ -1,0 +1,39 @@
+﻿@model MultiTenancyAdministrator.Component.Model.Configuration
+
+<fieldset>
+    <legend>Configuration</legend>
+    <table>
+        <tr>
+            <td class="display-label"> 
+                @Html.DisplayNameFor(model => model.Id)
+            </td>
+             <td class="display-field"> 
+                @Html.DisplayFor(model => model.Id)
+            </td>
+        </tr>
+        <tr>
+            <td class="display-label"> 
+                @Html.DisplayNameFor(model => model.Name)
+            </td>
+             <td class="display-field"> 
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td class="display-label"> 
+                @Html.DisplayNameFor(model => model.Value)
+            </td>
+             <td class="display-field"> 
+                @Html.DisplayFor(model => model.Value)
+            </td>
+        </tr>
+        <tr>
+            <td class="display-label"> 
+                @Html.DisplayNameFor(model => model.Description)
+            </td>
+             <td class="display-field"> 
+                @Html.DisplayFor(model => model.Description)
+            </td>
+        </tr>
+    </table>
+</fieldset>

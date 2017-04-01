@@ -1,0 +1,176 @@
+﻿using MultiTenancyAdministrator.Component;
+using MultiTenancyAdministrator.Component.Model;
+using MultiTenancyAdministrator.Component.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace MultitenancyAdministrator.Controllers
+{
+    public class ConfigurationController : Controller
+    {
+
+        private UOWMultitenancy unitOfWork = new UOWMultitenancy();
+
+
+        public ActionResult Index()
+        {
+            //List<Configuration> listConfigurations = unitOfWork.ConfigurationRepository.RetrieveEnumerable().ToList();
+            return View(this.unitOfWork.ConfigurationRepository.RetrieveEnumerable());
+
+        }
+
+        public ActionResult Details(int id)
+        {
+            //Configuration Configuration = context.Configurations.SingleOrDefault(c => c.Id == id);
+            Configuration oConfiguration = this.unitOfWork.ConfigurationRepository.Retrieve(id);
+
+            if (oConfiguration == null)
+            {
+                return HttpNotFound();
+            }
+            return View(oConfiguration);
+        }
+
+
+   
+
+        public ActionResult Save(int? id)
+        {
+            if (id.HasValue)
+            {//EDIT:
+                //Configuration Configuration = context.Configurations.Single(p => p.Id == id);
+                Configuration oConfiguration = this.unitOfWork.ConfigurationRepository.Retrieve(id.Value);
+
+                if (oConfiguration == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(oConfiguration);
+            }
+            else
+            {//CREATE:
+                return View();    
+            }
+            
+        }
+
+        [HttpPost]
+        public ActionResult Save(int? id, Configuration oConfiguration)
+        {
+            ConfigurationRepository oConfigurationRepository = this.unitOfWork.ConfigurationRepository;
+
+            if (ModelState.IsValid)
+            {
+                //Configuration _Configuration = context.Configurations.Single(p => p.Id == id);
+                if (id.HasValue)
+                {//UPDATE:
+                    Configuration oConfigurationDb = oConfigurationRepository.Retrieve(id.Value);
+                    //oConfigurationDb.Name = oConfiguration.Name;
+                    oConfigurationDb.Value = oConfiguration.Value;
+                    //oConfigurationDb.Description = oConfiguration.Description;
+                }
+                else
+                {//CREATE:
+                    this.unitOfWork.ConfigurationRepository.Create(oConfiguration);
+                }
+
+                this.unitOfWork.Commit();
+                return RedirectToAction("Index");
+            }
+            return View(oConfiguration);
+        }
+
+
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult Create(Configuration oConfiguration)
+        //{
+
+        //    //this.Validate(Configuration, this.unitOfWork.ConfigurationRepository, ModelState);
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        this.unitOfWork.ConfigurationRepository.Create(oConfiguration);
+        //        this.unitOfWork.Commit();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View(oConfiguration);
+        //}
+
+        //public ActionResult Edit(int id)
+        //{
+        //    //Configuration Configuration = context.Configurations.Single(p => p.Id == id);
+        //    Configuration oConfiguration = this.unitOfWork.ConfigurationRepository.Retrieve(id);
+
+        //    if (oConfiguration == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(oConfiguration);
+        //}
+
+        //[HttpPost]
+        //public ActionResult Edit(int id, Configuration oConfiguration)
+        //{
+        //    ConfigurationRepository oConfigurationRepository = this.unitOfWork.ConfigurationRepository;
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        //Configuration _Configuration = context.Configurations.Single(p => p.Id == id);
+
+        //        Configuration oConfigurationDb = oConfigurationRepository.Retrieve(id);
+        //        oConfigurationDb.Name = oConfiguration.Name;
+        //        oConfigurationDb.Value = oConfiguration.Value;
+                
+        //        this.unitOfWork.Commit();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(oConfiguration);
+        //}
+
+
+        public ActionResult Delete(int id)
+        {
+            //Configuration Configuration = context.Configurations.Single(p => p.Id == id);
+            Configuration oConfiguration = this.unitOfWork.ConfigurationRepository.Retrieve(id);
+
+            if (oConfiguration == null)
+            {
+                return HttpNotFound();
+            }
+            return View(oConfiguration);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, Configuration oConfiguration)
+        {
+            //Configuration _Configuration = context.Configurations.Single(p => p.Id == id);
+            //Configuration Configuration = context.Configurations.Single(p => p.Id == id);
+            Configuration oConfigurationDb = this.unitOfWork.ConfigurationRepository.Retrieve(id);
+
+            //context.Configurations.Remove(oConfiguration);
+            this.unitOfWork.ConfigurationRepository.Delete(oConfigurationDb);
+            this.unitOfWork.Commit();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            //context.Dispose();
+            this.unitOfWork.Dispose();
+            base.Dispose(disposing);
+        }
+
+
+       
+
+    }//End class
+}//End Namespace

@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+     @*<section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>*@
+
+}
+<h2 style="text-align:center;">Welcome to IAMS Auto - Multitenancy Administrator application.</h2>
+<div>
+    <h3>
+        In this application you will be able to configure data base connection strings for Clients (Tenancies) which will be using IAMS Auto web application.
+        To do this please go to @Html.ActionLink("Connection", "Index", "Connection") Section.
+        <br /><br />
+        Also you will be able to configure General Configuration to manage Token decrypting.
+        To do this please go to @Html.ActionLink("Configuration", "Index", "Configuration") Section.
+    </h3>
+</div>

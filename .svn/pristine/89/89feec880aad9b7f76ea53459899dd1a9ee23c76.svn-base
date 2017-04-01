@@ -1,0 +1,78 @@
+﻿using log4net;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SF.Core.ErrorHandler
+{
+    //2014-11-19 03:15:24 sculebras: 
+    /// <summary>
+    /// Logger for Log4Net.
+    /// </summary>
+    internal class Log4NetLogger : ILogger
+    {
+        
+        //Constructor
+        public Log4NetLogger()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+        }
+
+
+
+        /// <summary>
+        /// Logs message and/or Exception to file.
+        /// </summary>
+        /// <param name="strLogger">Identifier of the Logger which will log the message.</param>
+        /// <param name="strErrorMessage">Error message.</param>
+        /// <param name="ex">Exception.</param>
+        /// <param name="enumMessageType">Message Type.</param>
+        public void Log(string strLogger,
+                        string strErrorMessage,
+                        Exception ex,
+                        Logger.MessageType enumMessageType)
+        {
+
+            ILog logger = log4net.LogManager.GetLogger(strLogger);
+            switch (enumMessageType)
+            {
+                case Logger.MessageType.Error:
+                    if (ex==null)
+                    {
+                        logger.Error(strErrorMessage);
+                    }
+                    else
+                    {
+                        logger.Error(strErrorMessage, ex);
+                    }
+                    break;
+                case Logger.MessageType.Warning:
+                    if (ex == null)
+                    {
+                        logger.Warn(strErrorMessage);
+                    }
+                    else
+                    {
+                        logger.Warn(strErrorMessage, ex);
+                    }
+                    break;
+                case Logger.MessageType.Info:
+                    if (ex == null)
+                    {
+                        logger.Info(strErrorMessage);
+                    }
+                    else
+                    {
+                        logger.Info(strErrorMessage, ex);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }//End class
+}//End Namespace				
+				

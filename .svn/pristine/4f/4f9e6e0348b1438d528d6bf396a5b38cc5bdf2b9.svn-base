@@ -1,0 +1,94 @@
+﻿@model MultiTenancyAdministrator.Component.Model.Configuration
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string strControllerName = "Configuration";
+    
+    //Defines if it is in Create or Edit Mode
+    bool blCreate = Model == null;
+    string strMode = blCreate ? "Create" : "Edit";
+
+    ViewBag.Title = strMode;
+    
+    //Creates the RouteValues of the Cancel button (acording if it is in Creation or Edit Mode)
+    object oCancelRouteValues = blCreate ? null : new { id = Model.Id };
+    
+}
+
+<h2>@strControllerName - @strMode</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+        <fieldset>
+        <legend>Configuration - @strControllerName</legend>
+        <table>
+            @if (!blCreate)
+            {
+            <tr>
+                <td class="editor-label">
+                    @Html.LabelFor(model => model.Id)                    
+                </td>
+                <td class="editor-field">
+                    @Html.DisplayFor(model => model.Id)
+                </td>
+                <td></td>
+            </tr>
+            }
+            <tr>
+                <td class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </td>
+                <td class="editor-field">
+                    @Html.DisplayFor(model => model.Name)
+                    @Html.TextBoxFor(model => model.Name, new {@readonly= "readonly", style="display:none;" })
+                </td>
+                <td></td>
+                @*<td>
+                    @Html.ValidationMessageFor(model => model.Name)
+                </td>*@
+            </tr>
+            <tr>
+                <td class="editor-label">
+                    @Html.LabelFor(model => model.Value)
+                </td>
+                <td class="editor-field">
+                    @Html.EditorFor(model => model.Value)
+                </td>
+                 <td>
+                    @Html.ValidationMessageFor(model => model.Value)
+                </td>
+            </tr>
+            <tr>
+                <td class="editor-label">
+                    @Html.LabelFor(model => model.Description)
+                </td>
+                <td class="editor-field">
+                    @Html.DisplayFor(model => model.Description)
+                    @Html.TextBoxFor(model => model.Description, new { @readonly = "readonly", style="display:none;" })
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+    
+     @*Buttons*@
+        <p class="float-left">
+            <input type="submit" value="Save" title="Saves data."/>
+        </p>
+        <p> 
+            @Html.ActionButton("Cancel", "Save", "Configuration", oCancelRouteValues, new { title = "Restores original values." })
+        </p>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+    
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

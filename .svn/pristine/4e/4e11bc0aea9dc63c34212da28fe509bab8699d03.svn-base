@@ -1,0 +1,60 @@
+﻿using SF.Core.CustomAnnotations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using MultiTenancyAdministrator.Component.Model;
+
+namespace MultiTenancyAdministrator.Component.Model.CustomAnnotations
+{
+    //2014-09-12 03:06:34 sculebras: 
+    /// <summary>
+    /// Validates Value according of the proper type referenced by MultiTenancyAdministrator.Component.Model.Configuration.Items enumeration.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
+    public class ValueCustomValidation : ValidationAttribute
+    {
+        //public ValueCustomValidation(){}
+
+        /// <summary>
+        /// Server Side Validation.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="validationContext"></param>
+        /// <returns></returns>
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            //Gets all values for business validation
+            string strValue = (string)value;
+            Configuration.Items iId = (Configuration.Items) CustomAnnotationsValidations.getPropertyValue<int>(validationContext, "Id");
+            
+            switch (iId)
+            {
+                case Configuration.Items.TokenDecryptingKey: //1
+                    break;
+                case Configuration.Items.UseTokenExpiration: //2
+                    if (strValue!="0" && strValue!="1")
+                    {
+                        return new ValidationResult("Admitted values: 0 or 1.", new List<string>() { "Value" });//hardcoded because in run time (MVC bug?): validationContext.MemberName = null
+                    }
+                    break;
+                case Configuration.Items.TokenExpiringMinutes://3
+                    try
+                    {
+                        int.Parse(strValue);
+                    }
+                    catch (Exception)
+                    {
+                        return new ValidationResult("Only integer values are admitted.", new List<string>() { "Value" });//hardcoded because in run time (MVC bug?): validationContext.MemberName = null
+                    }
+                    break;
+                default:
+                    throw new ApplicationException(String.Format("{0} doesn't belong to a  existing item in MultiTenancyAdministrator.Component.Model.Configuration.Items enumeration", iId));
+            }
+
+            return ValidationResult.Success;
+        }
+
+    }//End class
+}//End Namespace				

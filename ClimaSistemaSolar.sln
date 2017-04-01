@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SF.Core", "SF.Core\SF.Core.csproj", "{8F493511-546B-4629-B515-6B613C53D4BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{AD1A7ADF-A409-4C5B-A614-51C6143ED918}"
+	ProjectSection(SolutionItems) = preProject
+		Database\MultiTenancyManager.bak = Database\MultiTenancyManager.bak
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dlls", "Dlls", "{32816633-9548-4A10-89E5-59569462E02C}"
+	ProjectSection(SolutionItems) = preProject
+		Dlls\log4net.dll = Dlls\log4net.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimaSistemaSolar.Servicio", "ClimaSistemaSolar.Servicio\ClimaSistemaSolar.Servicio.csproj", "{717651DF-BABF-4F99-90F7-CA37F46A5C5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimaSistemaSolar.Component.Initializer", "ClimaSistemaSolar.Component.Initializer\ClimaSistemaSolar.Component.Initializer.csproj", "{DCFA4214-E673-4736-BE56-39202B6ECB0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimaSistemaSolar.Component", "ClimaSistemaSolar.Component\ClimaSistemaSolar.Component.csproj", "{96A4330E-4C76-42F4-897E-5ABB931DE4E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimaSistemaSolar.TestConsole", "ClimaSistemaSolar.TestConsole\ClimaSistemaSolar.TestConsole.csproj", "{2982371A-2CFB-421C-BF34-B26FB75A1B2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Manuales", "Test Manuales", "{359AED3F-3E80-460B-A5ED-253934D202B3}"
+	ProjectSection(SolutionItems) = preProject
+		Test Manuales\Test Conversion Coordenadas Polares A Cartesianas.xlsx = Test Manuales\Test Conversion Coordenadas Polares A Cartesianas.xlsx
+		Test Manuales\Test Puntos Cartesianos de Rectas.xlsx = Test Manuales\Test Puntos Cartesianos de Rectas.xlsx
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimaSistemaSolar.ComponentTests", "ClimaSistemaSolar.ComponentTests\ClimaSistemaSolar.ComponentTests.csproj", "{1C96C9B6-A63B-4426-A798-1E47AE330960}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SF.Logger", "SF.Logger\SF.Logger.csproj", "{CDFBED1A-B7D4-4EAC-9EEA-FC61E145CBD0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F493511-546B-4629-B515-6B613C53D4BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F493511-546B-4629-B515-6B613C53D4BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F493511-546B-4629-B515-6B613C53D4BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F493511-546B-4629-B515-6B613C53D4BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{717651DF-BABF-4F99-90F7-CA37F46A5C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{717651DF-BABF-4F99-90F7-CA37F46A5C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{717651DF-BABF-4F99-90F7-CA37F46A5C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{717651DF-BABF-4F99-90F7-CA37F46A5C5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCFA4214-E673-4736-BE56-39202B6ECB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCFA4214-E673-4736-BE56-39202B6ECB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCFA4214-E673-4736-BE56-39202B6ECB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCFA4214-E673-4736-BE56-39202B6ECB0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96A4330E-4C76-42F4-897E-5ABB931DE4E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A4330E-4C76-42F4-897E-5ABB931DE4E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A4330E-4C76-42F4-897E-5ABB931DE4E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A4330E-4C76-42F4-897E-5ABB931DE4E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2982371A-2CFB-421C-BF34-B26FB75A1B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2982371A-2CFB-421C-BF34-B26FB75A1B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2982371A-2CFB-421C-BF34-B26FB75A1B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2982371A-2CFB-421C-BF34-B26FB75A1B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C96C9B6-A63B-4426-A798-1E47AE330960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C96C9B6-A63B-4426-A798-1E47AE330960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C96C9B6-A63B-4426-A798-1E47AE330960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C96C9B6-A63B-4426-A798-1E47AE330960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDFBED1A-B7D4-4EAC-9EEA-FC61E145CBD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDFBED1A-B7D4-4EAC-9EEA-FC61E145CBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDFBED1A-B7D4-4EAC-9EEA-FC61E145CBD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDFBED1A-B7D4-4EAC-9EEA-FC61E145CBD0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

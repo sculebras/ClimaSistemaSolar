@@ -1,0 +1,84 @@
+﻿<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <!--//2014-11-18 03:13:06 sculebras: Added for error logging-->
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net-net-1.0"/>
+  </configSections>
+  <connectionStrings>
+    <add name="ModelContext" connectionString="Data Source=localhost;uid=sa;pwd=Sofrecom14;database=MultiTenancyManager;" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <appSettings>
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+  </appSettings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5"/>
+    <customErrors mode="Off"/>
+  </system.web>
+  <system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior>
+          <!-- To avoid disclosing metadata information, set the values below to false before deployment -->
+          <serviceMetadata httpGetEnabled="true" httpsGetEnabled="true"/>
+          <!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information -->
+          <serviceDebug includeExceptionDetailInFaults="true"/>
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <protocolMapping>
+        <add binding="basicHttpsBinding" scheme="https" />
+    </protocolMapping>    
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" />
+  </system.serviceModel>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true"/>
+    <!--
+        To browse web app root directory during debugging, set the value below to true.
+        Set to false before deployment to avoid disclosing web app folder information.
+      -->
+    <directoryBrowse enabled="true"/>
+  </system.webServer>
+  <entityFramework>
+    <!--Referencia al initiallizer de EntitiFramework en otra DLL-->
+    <contexts>
+      <context type="MultiTenancyAdministrator.Component.DAL.Context.ModelContext, MultiTenancyAdministrator.Component"
+               disableDatabaseInitialization="true">
+        <!-- If true disables the Initializer (production environment)-->
+        <!--<databaseInitializer type="MultiTenancyAdministrator.Component.Initializer.ModelInitializer, MultiTenancyAdministrator.Component.Initializer"/>-->
+      </context>
+    </contexts>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="v11.0" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+  <!--//2014-11-18 11:31:39 sculebras: Added for error logging-->
+  <log4net debug="false">
+    <root>
+      <level value="DEBUG" />
+      <appender-ref ref="RollingFileAppender" />
+    </root>
+    <appender name="Default.Appender" type="log4net.Appender.RollingFileAppender">
+      <param name="File" value="c:\0Datos\Work\Sofrecom\Peugeot\Logs Log4Net\MultitenancyAdministrator.Service.log"/>
+      <param name="AppendToFile" value="true"/>
+      <rollingStyle value="Size"/>
+      <maxSizeRollBackups value="10"/>
+      <maximumFileSize value="10MB"/>
+      <staticLogFileName value="true"/>
+      <layout type="log4net.Layout.PatternLayout">
+        <param name="ConversionPattern" value="%date{dd MM yyyy HH:mm:ss,fff} %-6timestamp [%15.15thread] %-5level %30.30logger %ndc - %message%newline"/>
+      </layout>
+    </appender>
+    <logger name="Default.Logger">
+      <level value="ALL" />
+      <appender-ref ref="Default.Appender" />
+    </logger>
+  </log4net>
+</configuration> 

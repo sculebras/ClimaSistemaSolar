@@ -1,0 +1,61 @@
+﻿function EditPartial() {
+    ///2014-09-04 03:43:22 sculebras: 
+    /// <signature>
+    ///   <summary>
+    ///         EditPartial class to write EditPartial.cshtml to centralize view javascript code.
+    ///   </summary>
+    /// </signature>
+}
+
+EditPartial.vdHideIntegratedSecurityHidden = function vdHideIntegratedSecurityHidden(chkIntegratedSecurity) {
+    ///2014-09-02 10:15:20 sculebras: 
+    /// <signature>
+    ///   <summary>Depending Integrated Security checkbox value, Hides or shows the table row for user and password.</summary>
+    ///   <param name="chkIntegratedSecurity" type="Checkbox">Integrated Security checkbox.</param>
+    /// </signature>
+    var arrTr = $(".IntegratedSecurityHidden");
+    //Clean data on User and Pass textboxes
+    arrTr.find("input").val('');
+    //alert(chkIntegratedSecurity.checked);
+    if (chkIntegratedSecurity.checked) {
+        arrTr.hide();
+    }
+    else {
+        arrTr.show()
+    }
+}
+
+
+EditPartial.blValidateForm = function blValidateForm() {
+    ///<summary>
+    ///Validates the form.
+    ///(Executes jQuery form Validator).
+    ///Returns:
+    ///-true: Form validated.
+    ///-false: Form Not validated. 
+    ///</summary>
+    /// <returns type="bool">Form jQueryValidator.</returns>
+    var validator = $("form").first().validate();
+    return validator.form(); //<-Performs Validation
+}
+
+$(document).ready(function () {
+    //When onChange Event is fire in following controls Form Validation is executed
+    //$("#IntegratedSecurity").change(EditPartial.blValidateForm);
+    //$("#User").change(EditPartial.blValidateForm);
+    //$("#Password").change(EditPartial.blValidateForm);
+
+    //When Save Button is Clicked
+    $("input[type='submit']").click(function() {
+
+        //$.validator.addMethod("validateCity", function (value, element) {
+        //    return this.optional(element) || value != 'default';
+        //}, " Please City Option");
+        
+        //Validates form and if it is valild 
+        if (EditPartial.blValidateForm()) {
+            if (confirm('Are you sure you want to save?')) return true; else return false;
+        }
+    });
+
+});

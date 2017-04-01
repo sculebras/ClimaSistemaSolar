@@ -1,0 +1,56 @@
+﻿using MultiTenancyAdministrator.Component.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+
+namespace MultitenancyAdministrator.Service
+{
+    //2014-09-17 04:13:34 sculebras: 
+    /// <summary>
+    /// Service Contract for Service Layer.
+    /// </summary>
+    [ServiceContract]
+    public interface IService
+    {
+        [OperationContract]
+        string Test(int value);
+
+        #region CONFIGURATION
+        /// <summary>
+        /// Retrieves (Get) a Configuration according to its unique Name (Enumeration).
+        /// </summary>
+        /// <param name="enumConfigurationItem">Unique name of the Configuration (Enumeration).</param>
+        /// <returns></returns>
+        [OperationContract]
+        Configuration RetrieveConfiguration(Configuration.Items enumConfigurationItem);
+
+        /// <summary>
+        /// Retrieves all the Configurations in a dictionary.
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        Dictionary<Configuration.Items, string> RetrieveConfigurationsDictionary(); 
+        #endregion //CONFIGURATION
+
+        #region CONNECTION
+        /// <summary>
+        /// Retrieves a dictionary of Database identifiers matching their respective Connection Strings.
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        Dictionary<string, string> RetrieveConnectionsDictionary();
+
+        /// <summary>
+        /// Retrieves acollection of all the Connections.
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        Connection[] RetrieveConnections(); 
+        #endregion //CONNECTION
+
+    }//End interface
+}//End Namespace				

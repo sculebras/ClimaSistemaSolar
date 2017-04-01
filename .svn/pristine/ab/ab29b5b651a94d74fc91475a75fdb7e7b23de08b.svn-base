@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenancyAdministrator.UI", "MultitenancyAdministrator\MultiTenancyAdministrator.UI.csproj", "{AA118755-6DF9-41F7-85AC-38106FA6F850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenancyAdministrator.Component", "MultiTenancyAdministrator.Component\MultiTenancyAdministrator.Component.csproj", "{96A4330E-4C76-42F4-897E-5ABB931DE4E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenancyAdministrator.Component.Initializer", "MultiTenancyAdministrator.Component.Initializer\MultiTenancyAdministrator.Component.Initializer.csproj", "{DCFA4214-E673-4736-BE56-39202B6ECB0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SF.Core", "SF.Core\SF.Core.csproj", "{8F493511-546B-4629-B515-6B613C53D4BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultitenancyAdministrator.Service", "MultitenancyAdministrator.Service\MultitenancyAdministrator.Service.csproj", "{920EB22E-E4CC-4224-BD2C-F3BCA9C37BE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{AD1A7ADF-A409-4C5B-A614-51C6143ED918}"
+	ProjectSection(SolutionItems) = preProject
+		Database\MultiTenancyManager.bak = Database\MultiTenancyManager.bak
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA118755-6DF9-41F7-85AC-38106FA6F850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA118755-6DF9-41F7-85AC-38106FA6F850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA118755-6DF9-41F7-85AC-38106FA6F850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA118755-6DF9-41F7-85AC-38106FA6F850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96A4330E-4C76-42F4-897E-5ABB931DE4E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A4330E-4C76-42F4-897E-5ABB931DE4E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A4330E-4C76-42F4-897E-5ABB931DE4E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A4330E-4C76-42F4-897E-5ABB931DE4E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCFA4214-E673-4736-BE56-39202B6ECB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCFA4214-E673-4736-BE56-39202B6ECB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCFA4214-E673-4736-BE56-39202B6ECB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCFA4214-E673-4736-BE56-39202B6ECB0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F493511-546B-4629-B515-6B613C53D4BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F493511-546B-4629-B515-6B613C53D4BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F493511-546B-4629-B515-6B613C53D4BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F493511-546B-4629-B515-6B613C53D4BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{920EB22E-E4CC-4224-BD2C-F3BCA9C37BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{920EB22E-E4CC-4224-BD2C-F3BCA9C37BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{920EB22E-E4CC-4224-BD2C-F3BCA9C37BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{920EB22E-E4CC-4224-BD2C-F3BCA9C37BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

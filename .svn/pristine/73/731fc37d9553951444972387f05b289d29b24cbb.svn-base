@@ -1,0 +1,11 @@
+﻿//METODOS ESTATICOS:
+String.isNullOrEmpty = function (strValue) {
+    ///27/02/2008 12:04:39 p.m. sculebras:
+    ///<summary>
+    ///  Indica si la cadena ingresada es nula o es un string vacio.
+    ///  true: null o cadena vacia.
+    ///  false: tiene valor.
+    ///</summary>
+    ///<param name="strValue">Cadena a determinar si es nula o string vacio.</param>
+    return (strValue == null || strValue == "");
+}
