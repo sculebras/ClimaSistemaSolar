@@ -35,8 +35,11 @@ namespace ClimaSistemaSolar.Component.Tests
         [TestMethod()]
         public void SimulacionClimaTest()
         {
-            string strMethod = Logger.TraceStartMethod();
-            new SistemaSolar().SimulacionClima();
+            if (!TestsConstants.DESHABILITAR_DB_TESTS)
+            {
+                string strMethod = Logger.TraceStartMethod();
+                new SistemaSolar().SimulacionClima();
+            }
         }
 
         /// <summary>
@@ -45,14 +48,17 @@ namespace ClimaSistemaSolar.Component.Tests
         [TestMethod()]
         public void SimulacionClimaTestAlternativo()
         {
-            string strMethod = Logger.TraceStartMethod();
-            List<Planeta> planetas = new List<Planeta>()
+            if (!TestsConstants.DESHABILITAR_DB_TESTS)
             {
-                new Planeta("Ferengi", 100, 1, 90),
-                new Planeta("Betasoide", 200, 2,  90),
-                new Planeta("Vulcano", 300, 3, 90)
-            };
-            new SistemaSolar(planetas).SimulacionClima();
+                string strMethod = Logger.TraceStartMethod();
+                List<Planeta> planetas = new List<Planeta>()
+                {
+                    new Planeta("Ferengi", 100, 1, 90),
+                    new Planeta("Betasoide", 200, 2,  90),
+                    new Planeta("Vulcano", 300, 3, 90)
+                };
+                new SistemaSolar(planetas).SimulacionClima();
+            }
         }
 
     }

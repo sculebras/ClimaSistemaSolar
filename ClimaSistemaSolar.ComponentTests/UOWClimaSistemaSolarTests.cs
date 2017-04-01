@@ -34,7 +34,10 @@ namespace ClimaSistemaSolar.Component.Tests
         [TestMethod()]
         public void EscrituraLecturaTablaClimaTest()
         {
-            this.EscrituraLecturaTablaClimaTest(24, TipoClima.enumTipoClima.LluviaPicoMaximo);
+            if (!TestsConstants.DESHABILITAR_DB_TESTS)
+            {
+                this.EscrituraLecturaTablaClimaTest(24, TipoClima.enumTipoClima.LluviaPicoMaximo);
+            }
         }
 
 
@@ -45,7 +48,6 @@ namespace ClimaSistemaSolar.Component.Tests
         /// </summary>
         /// <param name="iDia"></param>
         /// <param name="enumTipoClima"></param>
-        [TestMethod()]
         private void EscrituraLecturaTablaClimaTest(int iDia, TipoClima.enumTipoClima enumTipoClima)
         {
             string strMethod = Logger.TraceStartMethod();
@@ -84,35 +86,39 @@ namespace ClimaSistemaSolar.Component.Tests
         [TestMethod()]
         public void EscrituraLecturaTablaTipoClimaTest()
         {
-            string strMethod = Logger.TraceStartMethod();
-            bool blResultadoMetodo = true;
+            if (!TestsConstants.DESHABILITAR_DB_TESTS)
+            {
+                string strMethod = Logger.TraceStartMethod();
+                bool blResultadoMetodo = true;
 
-            const int CANT_ITEMS = 4;
-            TipoClima[] arrTipoClima = new TipoClima[CANT_ITEMS] {
+                const int CANT_ITEMS = 4;
+                TipoClima[] arrTipoClima = new TipoClima[CANT_ITEMS] {
                 new TipoClima() { Id = 1, Descripcion = "Sequía" },
                 new TipoClima() { Id = 2, Descripcion = "Lluvia" },
                 new TipoClima() { Id = 3, Descripcion = "Lluvia Pico Máximo" },
                 new TipoClima() { Id = 4, Descripcion = "Óptimo" }
             };
-            int itemCount;
-            using (UOWClimaSistemaSolar unitOfWork = new UOWClimaSistemaSolar())
-            {
-                foreach (TipoClima oTipoClima in arrTipoClima)
+                int itemCount;
+                using (UOWClimaSistemaSolar unitOfWork = new UOWClimaSistemaSolar())
                 {
-                    unitOfWork.TipoClimaRepository.Create(oTipoClima);
+                    foreach (TipoClima oTipoClima in arrTipoClima)
+                    {
+                        unitOfWork.TipoClimaRepository.Create(oTipoClima);
+                    }
+                    unitOfWork.Commit();
+
+                    IEnumerable<TipoClima> arrTipoClima2 = unitOfWork.TipoClimaRepository.RetrieveEnumerable();
+                    itemCount = arrTipoClima2.Count();
                 }
-                unitOfWork.Commit();
 
-                IEnumerable<TipoClima> arrTipoClima2 = unitOfWork.TipoClimaRepository.RetrieveEnumerable();
-                itemCount = arrTipoClima2.Count();
+                if (itemCount != CANT_ITEMS)
+                {
+                    Logger.Trace(TraceEventType.Warning, string.Format("{2}: {3}: Se intento grabar {0} registros en Tabla TipoClima. Se leyeron {1} registros",
+                        CANT_ITEMS, itemCount, strMethod, TestsConstants.FALLO));
+                    blResultadoMetodo = false;
+                }
+                base.TraceResultMethod_EvaluaAssert(strMethod, blResultadoMetodo);
             }
-
-            if (itemCount != CANT_ITEMS) { 
-                Logger.Trace(TraceEventType.Warning, string.Format("{2}: {3}: Se intento grabar {0} registros en Tabla TipoClima. Se leyeron {1} registros",
-                    CANT_ITEMS, itemCount, strMethod, TestsConstants.FALLO));
-                blResultadoMetodo = false;
-            }
-            base.TraceResultMethod_EvaluaAssert(strMethod, blResultadoMetodo);
         }
 
 

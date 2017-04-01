@@ -23,8 +23,8 @@ namespace ClimaSistemaSolar.TestConsole
             {
                 Logger.Trace(TraceEventType.Start, "Application start");
 
-                //SimulacionClimaTest();
-                TestsUnitariosConsola();
+                SimulacionClimaTest();
+                //TestsUnitariosConsola();
                 Logger.Trace(TraceEventType.Stop, "Application End");
             }
             catch (Exception ex)
