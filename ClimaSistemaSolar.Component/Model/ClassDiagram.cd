@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClimaSistemaSolar.Component.Model.Clima">
+    <Position X="1" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQCAAAACCAAAACAAAAAAAAACAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Model\Clima.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TipoClima" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ClimaSistemaSolar.Component.Model.CoordenadasCartesianas">
+    <Position X="8.25" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Model\CoordenadasCartesianas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClimaSistemaSolar.Component.Model.CoordenadasPolares">
+    <Position X="8.5" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAABAAIAQAAA=</HashCode>
+      <FileName>Model\CoordenadasPolares.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClimaSistemaSolar.Component.Model.Planeta">
+    <Position X="5" Y="0.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="CoordenadasPolares" Type="ClimaSistemaSolar.Component.Model.CoordenadasPolares" ManuallyRouted="true">
+      <Path>
+        <Point X="7" Y="1.72" />
+        <Point X="8.5" Y="1.72" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACBAAAAAAAAAAEAAAAgAAQAAAAAAAAAAAAQAAQAAA=</HashCode>
+      <FileName>Model\Planeta.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CoordenadasCartesianas" />
+      <Property Name="CoordenadasPolares" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ClimaSistemaSolar.Component.Model.TipoClima">
+    <Position X="3.5" Y="7.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="ClimaSistemaSolar.Component.Model.TipoClima.enumTipoClima" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\TipoClima.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAIAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\TipoClima.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SF.Core.EntityBase">
+    <Position X="2.25" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ClimaSistemaSolar.Component.Repositories.ClimaRepository">
+    <Position X="11.25" Y="7.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\ClimaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SF.Core.Repository&lt;TEntity&gt;">
+    <Position X="12.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ClimaSistemaSolar.Component.Repositories.TipoClimaRepository">
+    <Position X="13.75" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\TipoClimaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClimaSistemaSolar.Component.SistemaSolar">
+    <Position X="0.75" Y="0.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAIABCAAAhAAAAAAAAAAAAAgAIQEgBAIIEA=</HashCode>
+      <FileName>SistemaSolar.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Planetas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ClimaSistemaSolar.Component.UOWClimaSistemaSolar">
+    <Position X="7.5" Y="9.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="SF.Core.UnitOfWork" FixedToPoint="true">
+      <Path>
+        <Point X="8.625" Y="8.632" />
+        <Point X="8.625" Y="9.5" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="TipoClimaRepository" Type="ClimaSistemaSolar.Component.Repositories.TipoClimaRepository" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.5" Y="10.562" />
+        <Point X="14.625" Y="10.562" />
+        <Point X="14.625" Y="8.483" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>UOWClimaSistemaSolar.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ClimaRepository" />
+      <Property Name="TipoClimaRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SF.Core.UnitOfWork">
+    <Position X="7.5" Y="6.5" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

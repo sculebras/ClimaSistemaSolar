@@ -57,12 +57,12 @@ namespace ClimaSistemaSolar.Component.Initializer
                 
                 //Insert SQL Scripts:
                 context.Database.ExecuteSqlCommand(@"
-                USE ClimaSistemaSolar
+                --USE ClimaSistemaSolar
                 --[TipoClima]
-                INSERT INTO [ClimaSistemaSolar].[dbo].[TipoClima]([Descripcion])VALUES('Sequía') 
-                INSERT INTO [ClimaSistemaSolar].[dbo].[TipoClima]([Descripcion])VALUES('Lluvia') 
-                INSERT INTO [ClimaSistemaSolar].[dbo].[TipoClima]([Descripcion])VALUES('Lluvia Pico Máximo') 
-                INSERT INTO [ClimaSistemaSolar].[dbo].[TipoClima]([Descripcion])VALUES('Óptimo') 
+                INSERT INTO [dbo].[TipoClima]([Descripcion])VALUES('Sequía') 
+                INSERT INTO [dbo].[TipoClima]([Descripcion])VALUES('Lluvia') 
+                INSERT INTO [dbo].[TipoClima]([Descripcion])VALUES('Lluvia Pico Máximo') 
+                INSERT INTO [dbo].[TipoClima]([Descripcion])VALUES('Óptimo') 
                 ");
 
             }
